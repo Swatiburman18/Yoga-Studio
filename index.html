@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Studio - Peace & Wellness</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #fdf0f7 0%, #f0e6ff 100%);
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #ff69b4 0%, #da70d6 100%);
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Home Section */
+        #home {
+            background: linear-gradient(135deg, #ff69b4 0%, #da70d6 50%, #b19cd9 100%);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0;
+            border-radius: 0;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        #home p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            background: white;
+            color: #da70d6;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Asanas Section */
+        #asanas {
+            background: linear-gradient(135deg, #fff5fb 0%, #f3e6ff 100%);
+        }
+
+        #asanas h2 {
+            color: #da70d6;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .asanas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .asana-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(218, 112, 214, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .asana-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(218, 112, 214, 0.4);
+        }
+
+        .asana-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ff69b4 0%, #da70d6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .asana-content {
+            padding: 1.5rem;
+        }
+
+        .asana-content h3 {
+            color: #da70d6;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .asana-content p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Time Slots Section */
+        #time-slots {
+            background: linear-gradient(135deg, #f3e6ff 0%, #fff5fb 100%);
+        }
+
+        #time-slots h2 {
+            color: #da70d6;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .slot-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 3px solid #ff69b4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slot-card:hover {
+            background: linear-gradient(135deg, #ff69b4 0%, #da70d6 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .slot-card.selected {
+            background: linear-gradient(135deg, #ff69b4 0%, #da70d6 100%);
+            color: white;
+            border-color: #b019d6;
+        }
+
+        .slot-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Reviews Section */
+        #reviews {
+            background: linear-gradient(135deg, #fff5fb 0%, #f3e6ff 100%);
+        }
+
+        #reviews h2 {
+            color: #da70d6;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(218, 112, 214, 0.2);
+            border-left: 5px solid #da70d6;
+        }
+
+        .review-card .name {
+            color: #da70d6;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-card p {
+            color: #666;
+            font-style: italic;
+        }
+
+        .review-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(218, 112, 214, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .review-form h3 {
+            color: #da70d6;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #da70d6;
+            box-shadow: 0 0 10px rgba(218, 112, 214, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #ff69b4 0%, #da70d6 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(218, 112, 214, 0.4);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* Registration Section */
+        #register {
+            background: linear-gradient(135deg, #f3e6ff 0%, #fff5fb 100%);
+        }
+
+        #register h2 {
+            color: #da70d6;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .register-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(218, 112, 214, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .register-form h3 {
+            color: #da70d6;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+            font-family: inherit;
+            background: white;
+            cursor: pointer;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: #da70d6;
+            box-shadow: 0 0 10px rgba(218, 112, 214, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #ff69b4 0%, #da70d6 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(90deg, #ff69b4 0%, #da70d6 100%);
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            #home h1 {
+                font-size: 2rem;
+            }
+
+            #home p {
+                font-size: 1rem;
+            }
+
+            #asanas h2,
+            #time-slots h2,
+            #reviews h2,
+            #register h2 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+                min-height: auto;
+            }
+
+            .asanas-grid,
+            .slots-grid,
+            .reviews-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo"> Yoga Studio</div>
+            <ul id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#asanas">Asanas</a></li>
+                <li><a href="#time-slots">Time Slots</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#register">Register</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <h1>Welcome to Serenity Yoga</h1>
+            <p>Find peace, balance, and wellness through the ancient practice of yoga. Join us on your journey to inner harmony.</p>
+            <button class="cta-button" onclick="document.getElementById('asanas').scrollIntoView({behavior: 'smooth'})">Explore Asanas</button>
+        </section>
+
+        <!-- Asanas Section -->
+        <section id="asanas">
+            <h2>Our Yoga Asanas</h2>
+            <div class="asanas-grid">
+                <div class="asana-card">
+                    <div class="asana-image"><img src="image1.webp"></div>
+                    <div class="asana-content">
+                        <h3>Tadasana</h3>
+                        <p>Mountain Pose - A foundational standing pose that promotes strength, stability, and proper posture. Perfect for beginners to establish body awareness.</p>
+                    </div>
+                </div>
+
+                <div class="asana-card">
+                    <div class="asana-image"><img src="image7.webp"></div>
+                    <div class="asana-content">
+                        <h3>Vrikshasana</h3>
+                        <p>Tree Pose - Improves balance, focus, and mental clarity. This standing pose strengthens the legs and opens the hips.</p>
+                    </div>
+                </div>
+
+                <div class="asana-card">
+                    <div class="asana-image"><img src="image3.webp"></div>
+                    <div class="asana-content">
+                        <h3>Bhujangasana</h3>
+                        <p>Cobra Pose - Opens the heart chakra and strengthens the spine. Great for building core strength and improving flexibility.</p>
+                    </div>
+                </div>
+
+                <div class="asana-card">
+                    <div class="asana-image"><img src="image4.webp"></div>
+                    <div class="asana-content">
+                        <h3>Adho Mukha Svanasana</h3>
+                        <p>Downward Dog - Energizes the body and stretches hamstrings, calves, and shoulders. One of the most fundamental poses in yoga.</p>
+                    </div>
+                </div>
+
+                <div class="asana-card">
+                    <div class="asana-image"><img src="image5.webp"></div>
+                    <div class="asana-content">
+                        <h3>Balasana</h3>
+                        <p>Child's Pose - A calming and restorative pose that relieves tension. Perfect for relaxation and meditation.</p>
+                    </div>
+                </div>
+
+                <div class="asana-card">
+                    <div class="asana-image"><img src="image6.webp"></div>
+                    <div class="asana-content">
+                        <h3>Trikonasana</h3>
+                        <p>Triangle Pose - Enhances flexibility, relieves back pain, and strengthens legs and core. A fundamental standing pose.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Time Slots Section -->
+        <section id="time-slots">
+            <h2>Available Time Slots</h2>
+            <div class="slots-grid">
+                <div class="slot-card" onclick="selectSlot(this, '6:00 AM - 7:00 AM')">
+                    <h3><img src="image9.webp"></h3>
+                    <h3>6:00 AM - 7:00 AM</h3>
+                    <p>Early Bird Class</p>
+                </div>
+                <div class="slot-card" onclick="selectSlot(this, '7:30 AM - 8:30 AM')">
+                    <h3><img src="image10.webp"></h3>
+                    <h3>7:30 AM - 8:30 AM</h3>
+                    <p>Morning Vinyasa</p>
+                </div>
+                <div class="slot-card" onclick="selectSlot(this, '5:00 PM - 6:00 PM')">
+                    <h3><img src="image12.webp"></h3>
+                    <h3>5:00 PM - 6:00 PM</h3>
+                    <p>Evening Hatha</p>
+                </div>
+                <div class="slot-card" onclick="selectSlot(this, '6:30 PM - 7:30 PM')">
+                    <h3><img src="image11.webp"></h3>
+                    <h3>6:30 PM - 7:30 PM</h3>
+                    <p>Twilight Yin</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews">
+            <h2>Student Reviews</h2>
+            <div class="reviews-container" id="reviewsContainer">
+                <div class="review-card">
+                    <div class="name">Aparna</div>
+                    <p>"Wonderful experience! The instructors guide with care and expertise. I feel more balanced and peaceful."</p>
+                </div>
+                <div class="review-card">
+                    <div class="name"> Mohan</div>
+                    <p>"Beautiful studio and relaxing atmosphere. The classes are well-structured. Highly recommended!"</p>
+                </div>
+                <div class="review-card">
+                    <div class="name"> Priya</div>
+                    <p>"My flexibility has greatly improved since joining. The community here is supportive and inspiring."</p>
+                </div>
+            </div>
+
+            <div class="review-form">
+                <h3>Leave Your Review</h3>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label for="reviewName">Your Name</label>
+                        <input type="text" id="reviewName" placeholder="Enter your name" required>
+                        <div class="error-message" id="nameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewText">Your Review</label>
+                        <textarea id="reviewText" placeholder="Share your experience..." required></textarea>
+                        <div class="error-message" id="reviewError"></div>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Review</button>
+                    <div id="reviewSuccess"></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Registration Section -->
+        <section id="register">
+            <h2>Register for Classes</h2>
+            <div class="register-form">
+                <h3>Join Our Community</h3>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="regName">Full Name</label>
+                        <input type="text" id="regName" placeholder="Enter your full name" required>
+                        <div class="error-message" id="regNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email Address</label>
+                        <input type="email" id="regEmail" placeholder="Enter your email" required>
+                        <div class="error-message" id="regEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regSlot">Preferred Time Slot</label>
+                        <select id="regSlot" required>
+                            <option value="">Select a time slot</option>
+                            <option value="6:00 AM - 7:00 AM">6:00 AM - 7:00 AM</option>
+                            <option value="7:30 AM - 8:30 AM">7:30 AM - 8:30 AM</option>
+                            <option value="5:00 PM - 6:00 PM">5:00 PM - 6:00 PM</option>
+                            <option value="6:30 PM - 7:30 PM">6:30 PM - 7:30 PM</option>
+                        </select>
+                        <div class="error-message" id="regSlotError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regLevel">Yoga Level</label>
+                        <select id="regLevel" required>
+                            <option value="">Select your level</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                        <div class="error-message" id="regLevelError"></div>
+                    </div>
+                    <button type="submit" class="submit-btn">Register Now</button>
+                    <div id="registerSuccess"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Serenity Yoga Studio. All rights reserved. Namaste </p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Time Slot Selection
+        let selectedSlot = null;
+
+        function selectSlot(element, slotTime) {
+            // Remove previous selection
+            document.querySelectorAll('.slot-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Add selection to clicked card
+            element.classList.add('selected');
+            selectedSlot = slotTime;
+
+            // Update the registration form slot
+            document.getElementById('regSlot').value = slotTime;
+        }
+
+        // Review Form Submission
+        document.getElementById('reviewForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Clear previous errors
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('reviewError').textContent = '';
+            document.getElementById('reviewSuccess').innerHTML = '';
+
+            // Get form values
+            const name = document.getElementById('reviewName').value.trim();
+            const review = document.getElementById('reviewText').value.trim();
+
+            // Validation
+            let hasError = false;
+
+            if (!name) {
+                document.getElementById('nameError').textContent = 'Name is required';
+                hasError = true;
+            }
+
+            if (!review) {
+                document.getElementById('reviewError').textContent = 'Review is required';
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Add review to container
+            const reviewCard = document.createElement('div');
+            reviewCard.className = 'review-card';
+            reviewCard.innerHTML = `
+                <div class="name">⭐ ${name}</div>
+                <p>"${review}"</p>
+            `;
+
+            document.getElementById('reviewsContainer').insertBefore(
+                reviewCard,
+                document.getElementById('reviewsContainer').firstChild
+            );
+
+            // Show success message
+            document.getElementById('reviewSuccess').innerHTML = '<div class="success-message">Review submitted successfully! Thank you for your feedback.</div>';
+
+            // Reset form
+            document.getElementById('reviewForm').reset();
+
+            // Clear success message after 3 seconds
+            setTimeout(() => {
+                document.getElementById('reviewSuccess').innerHTML = '';
+            }, 3000);
+        });
+
+        // Registration Form Submission
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Clear previous errors
+            document.getElementById('regNameError').textContent = '';
+            document.getElementById('regEmailError').textContent = '';
+            document.getElementById('regSlotError').textContent = '';
+            document.getElementById('regLevelError').textContent = '';
+            document.getElementById('registerSuccess').innerHTML = '';
+
+            // Get form values
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const slot = document.getElementById('regSlot').value;
+            const level = document.getElementById('regLevel').value;
+
+            // Email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Validation
+            let hasError = false;
+
+            if (!name) {
+                document.getElementById('regNameError').textContent = 'Name is required';
+                hasError = true;
+            }
+
+            if (!email) {
+                document.getElementById('regEmailError').textContent = 'Email is required';
+                hasError = true;
+            } else if (!emailRegex.test(email)) {
+                document.getElementById('regEmailError').textContent = 'Please enter a valid email';
+                hasError = true;
+            }
+
+            if (!slot) {
+                document.getElementById('regSlotError').textContent = 'Please select a time slot';
+                hasError = true;
+            }
+
+            if (!level) {
+                document.getElementById('regLevelError').textContent = 'Please select your yoga level';
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Show success message
+            document.getElementById('registerSuccess').innerHTML = `
+                <div class="success-message">
+                    <strong>Registration Successful!</strong><br>
+                    Thank you, ${name}! We've sent a confirmation email to ${email}.<br>
+                    Class: ${slot} | Level: ${level}
+                </div>
+            `;
+
+            // Reset form
+            document.getElementById('registerForm').reset();
+
+            // Clear success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('registerSuccess').innerHTML = '';
+            }, 5000);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
